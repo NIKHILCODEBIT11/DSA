@@ -1,0 +1,45 @@
+C++ STL is classified into 4 componenets :-
+
+(1) Algorithms
+(2) Containers ---> Vectors, Set, Queue, Map
+(3) Functions
+(4) Iterators
+
+
+Vector :-
+
+-----> I need to enclose "push_back()", "emplace_back()" inside a function like main() to access them.
+-----> To print elements of a vector i need to use a function like main().
+
+-----> DIFFERENT METHODS OF VECTOR :-
+
+(A) push_back()
+(B) emplace_back()
+(C) v.begin()
+(D) v.end()
+(E) v.rend()
+(F) v.rbegin()
+(G) v.back()
+
+    suppose in a vector {22,33,44,66,77}    :-
+
+    v.begin() -----> Points to "22".
+    v.end() -----> points to the memory location after "77", as in vector all the elements are stored in contigious memory locations.
+    v.rend() ----> Points  to the memory location before "22" in above vector, and to traverse in whole vector, i will have to do 
+    iter--,  as by using this vector for consideration will be {77,66,44,33,22}
+    v.rbegin() -----> Points to the memory address "77", and to traverse in whole vector, i will have to to iter++.
+    v.back() ------> Points to the last element of the vector i.e, "77".
+
+    Syntax for defining an iterator :-
+
+vector <int> :: iterator iter = v.begin()  ------>  It means there is an "iterator" named "iter" which points to the "MEMORY ADDRESS" 
+of first element of vector "v". And bu using "*iter", i can get the value stored at the memory address which is being pointed by
+the "iter".
+
+
+SIGNIFICANCE OF "auto" :-       "auto means auto-assignation"
+------> "auto" is like any other "data type", but is smart, as it can automatically assign the variable with data type as given after "=".
+EX- auto k=3.4;
+
+
+
