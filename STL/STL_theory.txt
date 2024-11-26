@@ -42,4 +42,19 @@ SIGNIFICANCE OF "auto" :-       "auto means auto-assignation"
 EX- auto k=3.4;
 
 
+#######  Next container is   list :-
 
+-----> List is similar to vector, the only difference is that by using list is that :-  List gives me "FRONT OPERATIONS" as well.
+-----> In list, i can't use     ls[i] or ls.at(i)   to access elements of list.
+-----> Unlike vector, here i am using push_front() and emplace_front() because  push_front() and emplace_front() works faster than insert() function.
+
+------> For list, a doubly linkedlist is maintained, whereas for vector a single linkedlist is maintained.
+
+
+##### Next container is     deque :-
+-----> Everything is same as vector         even here i can USE     dq.at(i) and dq[i] to print elements of deque.
+
+
+###### Next container is      Stack :-              { LIFO - LAST IN FIRST OUT }
+
+--------> Suppose i entered values in order     1 ---> 2 ---> 3 ---> 4 ---> 5

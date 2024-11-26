@@ -66,7 +66,7 @@ void output_auto_iter(){
 
 // Method - 4 :-    using "auto" but as "integer"   called as   "for-each loop"
 void output_auto_int(){     
-    for(auto it : v9){      // By this syntax, "it" instead of pointing to memory address, it will directlt point to value of first element.
+    for(auto it : v9){      // By this syntax, "it" instead of pointing to memory address, it will directly point to value of first element.
         cout<<it;
     }
     cout<<endl;
