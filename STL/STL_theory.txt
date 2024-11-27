@@ -58,3 +58,9 @@ EX- auto k=3.4;
 ###### Next container is      Stack :-              { LIFO - LAST IN FIRST OUT }
 
 --------> Suppose i entered values in order     1 ---> 2 ---> 3 ---> 4 ---> 5
+
+-------> Can't use indexing or (auto it : q ), to iterate through stack elements.
+
+####### Next container is       queue :-            { FIFO - FIRST IN FIRST OUT }
+
+-------> Can't use indexing or (auto it : q ), to iterate through queue elements.
