@@ -8,7 +8,10 @@ using namespace std;
 void print_pq(priority_queue <int> &);
 
 void explain_priority_queue(){
-//  priority_queue <int> q2={3,4,6};    ---->   I can use "PRIORITY QUEUE" by including the header file     #include<queue>,    even 
+    priority_queue <int> q2={3,4};  //  ---->   I can use "PRIORITY QUEUE" by including the header file     #include<queue>,    even 
+    
+    // The above initialization means give 3 instances of 4 , as in priority queue it supports "vector".
+
     priority_queue <int> pq;
     pq.push(4);
     pq.push(2);
@@ -37,3 +40,5 @@ int main(){
     explain_priority_queue();
     return 0;
 }
+
+// Inside of "priority queue" not a "linear" data structure is maintained, rather a "Tree" data structure is maintained.

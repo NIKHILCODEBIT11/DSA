@@ -64,3 +64,21 @@ EX- auto k=3.4;
 ####### Next container is       queue :-            { FIFO - FIRST IN FIRST OUT }
 
 -------> Can't use indexing or (auto it : q ), to iterate through queue elements.
+
+####### Next container is priority queue :-
+
+-------> Inside of "priority queue" not a "linear" data structure is maintained, rather a "Tree" data structure is maintained.
+
+Below is the    time-complexity for diffrenet methods of priority queue :-
+
+(1)     push() ----->  logn
+
+(2)     pop() ------> O(1)
+
+(3)     top() ------> logn
+
+
+###### Next container is set :-
+
+
+-------->   Set stores in "SORTED MANNER"  and stores "UNIQUE VALUE"
