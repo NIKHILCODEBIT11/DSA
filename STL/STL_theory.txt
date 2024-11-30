@@ -82,3 +82,25 @@ Below is the    time-complexity for diffrenet methods of priority queue :-
 
 
 -------->   Set stores in "SORTED MANNER"  and stores "UNIQUE VALUE"
+
+---------> base() is used for converting a "REVERSE ITERATOR" to the regular "FORWARD ITERATOR", as some "SET" methods like erase() require forward iterators to operate not reverse iterators.
+
+1. lower_bound() :-
+
+If the value is found, lower_bound() will return an iterator to the first occurrence of that value.
+If the value is not found, it will return an iterator pointing to the first element greater than the value.
+If the value is larger than all elements in the container, lower_bound() will return an iterator to the end of the container (end()).
+
+2. upper_bound() :-
+
+If the value is found, upper_bound() will return an iterator to the first element greater than the value.
+If the value is not found, it will return an iterator pointing to the first element greater than the value.
+If the value is larger than all elements in the container, upper_bound() will return an iterator to the end of the container (end()).
+
+BIGGEST CONFUSION :-
+
+-----> I CAN ONLY PERFROM INCREMENT IN s.rbegin()
+-----> I CAN ONLY PERFORM DECREMENT IN s.rend()
+
+-----> If i do ++t :- That means instantly t will be incremented by 1.
+-----> If i do t++ :- That means first of all wherever after doing "t++" for first time "t" will be used and after first use then it will increment.
