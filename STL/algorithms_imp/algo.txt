@@ -1,0 +1,28 @@
+Here, initially i will learn some very very useful algorithms and eventually as i "CODE" and "SOLVE PROBLEMS" i will learn new-new algorithms
+
+############ ( 1 )  sort()   :-     It sorts the elements in by default ascending order.
+
+--------->  In C++, iterators are used to traverse through elements in a container ( like a vector, list, or an array ). Different types
+of containers provide different types of iterators, which define how i can access the elements in a container.
+
+
+Types of iterators :-
+
+(1) Random access iterators :-   Random access iterators allow me to access any element in the container directly by providing an index
+or an offsetfrom the beginning.
+
+-----> I can move forward or backward and even can jump to any position in the container using arithmetic  { it+2, it-3 }
+
+-----> I can directly access any position element in "VECTOR" or "ARRAY"
+
+--------> Containers that provide "RANDOM ACCESS ITERATORS" are :-      VECTOR      ARRAY       DEQUE
+
+
+(2) Bidirectional iterators :-    Bidirectional iterators allow me to move through the container in both directions "forward" as well
+as "Backwards" ,   but CANNOT DIRECTLY ACCESS AN ELEMENT using an offset or index.
+
+------> I can  only traverse the container element by element
+
+------> I can move forward ( ++it ) or move backward ( --it ), but cannot perform random access like ( it+n )
+
+--------> Containers that provide "BIDIRECTIONAL ITERATORS" are :-        list        SET         MAP         MULTISET        MULTIMAP
