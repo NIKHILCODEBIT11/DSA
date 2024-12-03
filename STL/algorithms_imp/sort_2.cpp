@@ -10,7 +10,7 @@
 using namespace std;
 
 bool com(pair <int,int> p1,pair <int,int> p2){      // customized "COMPARATOR" or "FUNCTOR"
-    if(p1.second<p2.second){
+    if(p1.second<p2.second){        // I can also write :-    if(p1.second<p2.second) return true;      ---->   Syntax of for loop
         return true;
     }
     else if(p1.second>p2.second){
@@ -43,3 +43,6 @@ int main(){
     }
     return 0;
 }
+
+
+//   "Customized comparator" must always be of type "BOOLEAN" and should only return "TRUE" or "FALSE"
