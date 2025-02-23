@@ -1,0 +1,30 @@
+Linked list are just like arrays, but unlike in arrays, the size of the linked list can be increased or decreased, and also 
+unlike array, linkedlist is not stored in contigious memory locations rather it is stored in heap memory.
+
+Linked list are made up of nodes and each node contains data as well as "next" which points to the next node.
+
+Starting node of linked list is called as head of the linked list and the last node of the linked list is called as the tail of the linked list.
+
+The last node of the linked list points to "null pointer"
+
+It is used in "stack" and "queue" heavily and real life application is browser.
+
+I can create NODE using     struct / class.     ----> Either i use struct or class i will have to use same syntax and same logic.
+
+----> The only major difference between struct and class is that class offers oops but struct doesn't.
+
+As, i cannot store a memory location like "&a", so that's why i store a pointer to it, which willl point to that memory location
+
+***** To print address of a variable i can directly use "cout" no need to use "%p" or "%u" like in C programming.
+
+***********   "new" directly gives me a pointer to a memory location, which i directly use in a pointer of my name choice.
+Ex-  Node *x = new Node(2,nullptr)
+it is same as  Node *x = &Node(2,nullptr)
+Here to print data and next i will have to use arrow operator as by using "new" i made the object pointer 
+ex-   cout<<x->data<<x->next;
+
+
+One more way to make object node is :-
+
+Ex- Node x = Node(2,nullptr)
+to access elements i can do     cout<<x.data<<x.next;
