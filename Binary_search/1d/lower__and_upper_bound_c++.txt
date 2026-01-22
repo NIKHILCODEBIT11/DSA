@@ -1,0 +1,18 @@
+In case of C++ :-
+
+In coding round instead of calculating lower bound for array i can directly use method lower_bound() method of array.
+
+-----> For whole array "arr" with size "n" finding target "target" :-
+
+lb=lower_bound(arr,arr+n,target)
+
+-----> For part of array "arr" :-
+
+lb=lower_bound(arr+2,arr+7,target)
+
+-----> For vector "vec" finding target "target" :-
+
+lb=lower_bound(vec.begin(),vec.end(),target)
+
+
+********** Same for upper bound just replace "lower_bound" by "upper_bound"
