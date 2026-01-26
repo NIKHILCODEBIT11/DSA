@@ -1,0 +1,36 @@
+In binary search on answers i will always be asked to find the "minimum" or "maximum" value from set of values.
+
+------> For finding floor value of sqrt of n:-
+
+i have to find "maximum" value of integer which on squaring <=n
+
+Ex :-
+
+3*3 <= 36   Might be the answer
+2*2 <= 36   Might be the answer
+4*4 <= 36   Might be the answer
+5*5 < =36   Might be the answer
+6*6 <= 36   Might be the answer
+7*7 >  36       REJECTED 
+
+Instead of returning "ans" i can also return "high" as "high" is the first index which has possible answer and "low" is the
+first index where answer is not possible.
+
+
+EXPLAINATION :-
+
+After binary search ends,
+high points to the largest value that satisfies the condition
+and low points to the first value that violates it.
+
+So returning high gives the same result as ans.
+
+n = 10
+floor(sqrt(10)) = 3
+
+Binary search trace
+low	high	mid	mid*mid <= 10	action
+0	10	5	❌ (25 > 10)	high = 4
+0	4	2	✅ (4 ≤ 10)	low = 3
+3	4	3	✅ (9 ≤ 10)	low = 4
+4	4	4	❌ (16 > 10)	high = 3
