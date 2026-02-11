@@ -57,3 +57,29 @@ int main(){
     cout<<head->data;
     return 0;
 }
+
+
+/*
+
+To convert array to         "DLL"       use this :-
+
+node * convert_arr_to_dll(vector <int>& nums){
+
+    node* head = new node(nums[0]);
+    node* prev = head;
+
+    for(int i = 1; i < nums.size(); i++){
+
+        node* temp = new node(nums[i]);
+
+        prev->next = temp;   // forward link
+        temp->back = prev;   // backward link  🔥 IMPORTANT
+
+        prev = temp;
+    }
+
+    return head;
+}
+
+
+*/
