@@ -29,7 +29,7 @@ node * convert_arr_to_ll(vector <int>&nums){
     return head;
 }
 
-node *reverse(node *head){
+node *reverse(node *head){          // 2   3    4   7   9
     if(head==NULL || head->next==nullptr){
         return head;
     }
