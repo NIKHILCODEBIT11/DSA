@@ -18,7 +18,8 @@ class node{
 
 node* convert_arr_to_1D(vector <int> &nums){
     node *head=new node(nums[0]);
-    node* mover = head;for(int i=1;i<nums.size();i++){
+    node* mover = head;
+    for(int i=1;i<nums.size();i++){
         node *temp = new node(nums[i]);
         mover->next=temp;
         mover = temp;

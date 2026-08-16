@@ -1,0 +1,126 @@
+/*
+================================================================================
+                    MERGE SORT COMPLETE EXECUTION TRACE
+Array Size: 6 | Input: arr = [38, 27, 43, 3, 9, 82]
+================================================================================
+
+--------------------------------------------------------------------------------
+PHASE 1: LEFT SUBTREE (Indices 0 to 2)
+--------------------------------------------------------------------------------
+
+STEP 1: Call mergesort(0, 5)
+- Values: low = 0, high = 5
+- Base Check: 0 >= 5 -> FALSE
+- Formula: mid = (0 + 5) / 2 = 2
+- Left Call: mergesort(low, mid) -> mergesort(0, 2)
+- Right Call (Waits): mergesort(mid + 1, high) -> mergesort(3, 5)
+- Status: mergesort(0, 5) Line 1 par PAUSE.
+
+STEP 2: Call mergesort(0, 2)
+- Values: low = 0, high = 2
+- Base Check: 0 >= 2 -> FALSE
+- Formula: mid = (0 + 2) / 2 = 1
+- Left Call: mergesort(low, mid) -> mergesort(0, 1)
+- Right Call (Waits): mergesort(mid + 1, high) -> mid + 1 = 1 + 1 = 2 -> mergesort(2, 2)
+- Status: mergesort(0, 2) Line 1 par PAUSE.
+
+STEP 3: Call mergesort(0, 1)
+- Values: low = 0, high = 1
+- Base Check: 0 >= 1 -> FALSE
+- Formula: mid = (0 + 1) / 2 = 0
+- Left Call: mergesort(low, mid) -> mergesort(0, 0)
+- Right Call (Waits): mergesort(mid + 1, high) -> mid + 1 = 0 + 1 = 1 -> mergesort(1, 1)
+- Status: mergesort(0, 1) Line 1 par PAUSE.
+
+STEP 4: Call mergesort(0, 0) [Single Element: 38]
+- Values: low = 0, high = 0
+- Base Check: 0 >= 0 -> TRUE
+- Execute: return;
+- Status: mergesort(0, 0) DESTROYED. Control goes back to mergesort(0, 1) Line 1 complete.
+
+STEP 5: Call mergesort(1, 1) [Single Element: 27]
+- Values: low = 1, high = 1
+- Base Check: 1 >= 1 -> TRUE
+- Execute: return;
+- Status: mergesort(1, 1) DESTROYED. Control goes back to mergesort(0, 1) Line 2 complete.
+
+STEP 6: First Merge merge(arr, 0, 0, 1)
+- Values passed to merge: low = 0, mid = 0, high = 1
+- Inside merge:
+  * left = low = 0 (arr[0] = 38)
+  * right = mid + 1 = 0 + 1 = 1 (arr[1] = 27)
+- Compare & Sort: 27 chhota hai 38 se, temp me [27, 38] aaya.
+- RAM Updated: arr[0..1] overwrites to [27, 38].
+- Status: mergesort(0, 1) Complete. Control goes back to mergesort(0, 2).
+
+STEP 7: Call mergesort(2, 2) [Single Element: 43]
+- Values: low = 2, high = 2
+- Base Check: 2 >= 2 -> TRUE
+- Execute: return;
+- Status: mergesort(2, 2) DESTROYED. Control goes back to mergesort(0, 2) Line 2 complete.
+
+STEP 8: Second Merge merge(arr, 0, 1, 2)
+- Values passed to merge: low = 0, mid = 1, high = 2
+- Inside merge:
+  * left = low = 0 (arr[0..1] range: [27, 38])
+  * right = mid + 1 = 1 + 1 = 2 (arr[2] = 43)
+- Compare & Sort: Merges [27, 38] and [43].
+- RAM Updated: arr[0..2] overwrites to [27, 38, 43].
+- Status: Left Half Complete! mergesort(0, 2) DESTROYED. Control goes back to mergesort(0, 5).
+
+--------------------------------------------------------------------------------
+PHASE 2: RIGHT SUBTREE (Indices 3 to 5)
+--------------------------------------------------------------------------------
+
+STEP 9: Resume mergesort(0, 5) -> Calls mergesort(3, 5)
+- Values: low = 3, high = 5
+- Base Check: 3 >= 5 -> FALSE
+- Formula: mid = (3 + 5) / 2 = 4
+- Left Call: mergesort(low, mid) -> mergesort(3, 4)
+- Right Call (Waits): mergesort(mid + 1, high) -> mid + 1 = 4 + 1 = 5 -> mergesort(5, 5)
+- Status: mergesort(3, 5) Line 1 par PAUSE.
+
+STEP 10: Call mergesort(3, 4)
+- Values: low = 3, high = 4
+- Base Check: 3 >= 4 -> FALSE
+- Formula: mid = (3 + 4) / 2 = 3
+- Left Call: mergesort(3, 3) -> 3 >= 3 TRUE -> return;
+- Right Call: mergesort(mid + 1, high) -> mid + 1 = 3 + 1 = 4 -> mergesort(4, 4) -> 4 >= 4 TRUE -> return;
+
+STEP 11: Third Merge merge(arr, 3, 3, 4)
+- Values passed to merge: low = 3, mid = 3, high = 4
+- Inside merge:
+  * left = low = 3 (arr[3] = 3)
+  * right = mid + 1 = 3 + 1 = 4 (arr[4] = 9)
+- RAM Updated: arr[3..4] remains [3, 9].
+
+STEP 12: Call mergesort(5, 5) & Fourth Merge merge(arr, 3, 4, 5)
+- mergesort(5, 5) -> 5 >= 5 TRUE -> return;
+- merge(arr, 3, 4, 5) Values: low = 3, mid = 4, high = 5
+- Inside merge:
+  * left = 3 (arr[3..4]: [3, 9])
+  * right = mid + 1 = 4 + 1 = 5 (arr[5] = 82)
+- RAM Updated: arr[3..5] overwrites to [3, 9, 82].
+- Status: Right Half Complete! Control goes back to top-level mergesort(0, 5).
+
+--------------------------------------------------------------------------------
+PHASE 3: FINAL MERGE
+--------------------------------------------------------------------------------
+
+STEP 13: Final Grand Merge merge(arr, 0, 2, 5)
+- Values passed to merge: low = 0, mid = 2, high = 5
+- Inside merge:
+  * left = low = 0 (arr[0..2] = [27, 38, 43])
+  * right = mid + 1 = 2 + 1 = 3 (arr[3..5] = [3, 9, 82])
+- Loop Comparison:
+  * Compare arr[0] (27) vs arr[3] (3) -> Pick 3
+  * Compare arr[0] (27) vs arr[4] (9) -> Pick 9
+  * Compare arr[0] (27) vs arr[5] (82) -> Pick 27
+  * Compare arr[1] (38) vs arr[5] (82) -> Pick 38
+  * Compare arr[2] (43) vs arr[5] (82) -> Pick 43
+  * Left side finished -> Pick remaining 82
+- RAM Overwritten: [3, 9, 27, 38, 43, 82]
+
+Result: Har step par low, mid, high, aur mid + 1 exact calculate hue bina variable overlap ke.
+================================================================================
+*/

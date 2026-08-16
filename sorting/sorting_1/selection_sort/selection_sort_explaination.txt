@@ -1,0 +1,131 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+/*
+====================================================================
+                  SELECTION SORT VISUAL WALKTHROUGH
+====================================================================
+Input Array: [64, 25, 12, 22, 11]
+Array Length (n): 5
+
+--------------------------------------------------------------------
+PASS 1 (i = 0):
+--------------------------------------------------------------------
+Initial State:
+  Array:     [64, 25, 12, 22, 11]
+  Index:      0   1   2   3   4
+  Assumed Min: ^ (arr[0] = 64)
+
+Inner Loop Search:
+  - Compare arr[1] (25) < 64 -> New min is 25 (Index 1)
+  - Compare arr[2] (12) < 25 -> New min is 12 (Index 2)
+  - Compare arr[3] (22) < 12 -> No change
+  - Compare arr[4] (11) < 12 -> New min is 11 (Index 4)
+
+Swap arr[0] (64) with arr[4] (11):
+  Array:     [11, 25, 12, 22, 64]
+  Sorted:    [11] | Unsorted: [25, 12, 22, 64]
+  Index:      0    1   2   3   4
+  Sorted Pointer:
+              ^ (Placed in correct sorted position)
+
+
+--------------------------------------------------------------------
+PASS 2 (i = 1):
+--------------------------------------------------------------------
+Initial State:
+  Array:     [11, 25, 12, 22, 64]
+  Index:      0   1   2   3   4
+  Assumed Min:    ^ (arr[1] = 25)
+
+Inner Loop Search:
+  - Compare arr[2] (12) < 25 -> New min is 12 (Index 2)
+  - Compare arr[3] (22) < 12 -> No change
+  - Compare arr[4] (64) < 12 -> No change
+
+Swap arr[1] (25) with arr[2] (12):
+  Array:     [11, 12, 25, 22, 64]
+  Sorted:    [11, 12] | Unsorted: [25, 22, 64]
+  Index:      0   1    2   3   4
+  Sorted Pointer:
+                  ^ (Placed in correct sorted position)
+
+
+--------------------------------------------------------------------
+PASS 3 (i = 2):
+--------------------------------------------------------------------
+Initial State:
+  Array:     [11, 12, 25, 22, 64]
+  Index:      0   1   2   3   4
+  Assumed Min:        ^ (arr[2] = 25)
+
+Inner Loop Search:
+  - Compare arr[3] (22) < 25 -> New min is 22 (Index 3)
+  - Compare arr[4] (64) < 22 -> No change
+
+Swap arr[2] (25) with arr[3] (22):
+  Array:     [11, 12, 22, 25, 64]
+  Sorted:    [11, 12, 22] | Unsorted: [25, 64]
+  Index:      0   1   2    3   4
+  Sorted Pointer:
+                      ^ (Placed in correct sorted position)
+
+
+--------------------------------------------------------------------
+PASS 4 (i = 3):
+--------------------------------------------------------------------
+Initial State:
+  Array:     [11, 12, 22, 25, 64]
+  Index:      0   1   2   3   4
+  Assumed Min:            ^ (arr[3] = 25)
+
+Inner Loop Search:
+  - Compare arr[4] (64) < 25 -> No change
+
+Swap arr[3] (25) with arr[3] (25) [Self Swap]:
+  Array:     [11, 12, 22, 25, 64]
+  Sorted:    [11, 12, 22, 25] | Unsorted: [64]
+  Index:      0   1   2   3    4
+  Sorted Pointer:
+                          ^ (Placed in correct sorted position)
+
+--------------------------------------------------------------------
+FINAL RESULT:
+--------------------------------------------------------------------
+  Array:     [11, 12, 22, 25, 64]
+  Index:      0   1   2   3   4
+              ^   ^   ^   ^   ^ (Fully Sorted)
+====================================================================
+*/
+
+void selection_sort(vector<int>& arr) {
+    int n = arr.size();
+
+    for (int i = 0; i <= n - 2; i++) {
+        int min_index = i;
+
+        for (int j = i + 1; j < n; j++) {
+            if (arr[j] < arr[min_index]) {
+                min_index = j;
+            }
+        }
+
+        // Swap actual values
+        swap(arr[i], arr[min_index]);
+    }
+}
+
+int main() {
+    vector<int> arr = {64, 25, 12, 22, 11};
+
+    selection_sort(arr);
+
+    for (int val : arr) {
+        cout << val << " ";
+    }
+    cout << endl;
+
+    return 0;
+}

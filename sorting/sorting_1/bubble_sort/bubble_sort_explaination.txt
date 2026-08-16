@@ -1,0 +1,81 @@
+Visual Walkthrough on Example Array [5, 3, 8, 4]
+
+Let's sort an array of n = 4 elements with indices 0, 1, 2, 3:
+
+Pass 1 (i = 3): Bubble the largest element to index 3
+Unsorted Region: Indices 0 to 3
+
+Initial Array: [ 5, 3, 8, 4 ]
+
+Step 1 (j = 0): Compare arr[0] (5) and arr[1] (3) -> 5 > 3, SWAP!
+   Indices:   [ 0 ] [ 1 ] [ 2 ] [ 3 ]
+   Values:    [  5 ,   3 ,   8 ,   4  ]
+                 ^     ^
+                arr[j] arr[j+1]
+   Result:    [  3 ,   5 ,   8 ,   4  ]
+
+Step 2 (j = 1): Compare arr[1] (5) and arr[2] (8) -> 5 < 8, NO SWAP
+   Indices:   [ 0 ] [ 1 ] [ 2 ] [ 3 ]
+   Values:    [  3 ,   5 ,   8 ,   4  ]
+                       ^     ^
+                      arr[j] arr[j+1]
+   Result:    [  3 ,   5 ,   8 ,   4  ]
+
+Step 3 (j = 2): Compare arr[2] (8) and arr[4] (4) -> 8 > 4, SWAP!
+   Indices:   [ 0 ] [ 1 ] [ 2 ] [ 3 ]
+   Values:    [  3 ,   5 ,   8 ,   4  ]
+                             ^     ^
+                            arr[j] arr[j+1]
+   Result:    [  3 ,   5 ,   4 ,   8  ]
+
+-----------------------------------------------------------
+End of Pass 1 (i = 3):
+Largest element (8) reached its final sorted position at index 3.
+Array State: [ 3, 5, 4  |  8 ]
+                           ^ 
+                     Sorted boundary (i = 3)
+
+
+Pass 2 (i = 2): Bubble the 2nd largest element to index 2
+Unsorted Region: Indices 0 to 2
+
+Current Array: [ 3, 5, 4 | 8 ]
+
+Step 1 (j = 0): Compare arr[0] (3) and arr[1] (5) -> 3 < 5, NO SWAP
+   Indices:   [ 0 ] [ 1 ] [ 2 ] | [ 3 ]
+   Values:    [  3 ,   5 ,   4  |   8  ]
+                 ^     ^
+                arr[j] arr[j+1]
+   Result:    [  3 ,   5 ,   4  |   8  ]
+
+Step 2 (j = 1): Compare arr[1] (5) and arr[2] (4) -> 5 > 4, SWAP!
+   Indices:   [ 0 ] [ 1 ] [ 2 ] | [ 3 ]
+   Values:    [  3 ,   5 ,   4  |   8  ]
+                       ^     ^
+                      arr[j] arr[j+1]
+   Result:    [  3 ,   4 ,   5  |   8  ]
+
+-----------------------------------------------------------
+End of Pass 2 (i = 2):
+Second largest element (5) reached its final position at index 2.
+Array State: [ 3, 4  |  5, 8 ]
+                        ^ 
+                  Sorted boundary (i = 2)
+
+
+Pass 3 (i = 1): Bubble the 3rd largest element to index 1
+Unsorted Region: Indices 0 to 1
+
+Current Array: [ 3, 4 | 5, 8 ]
+
+Step 1 (j = 0): Compare arr[0] (3) and arr[1] (4) -> 3 < 4, NO SWAP
+   Indices:   [ 0 ] [ 1 ] | [ 2 ] [ 3 ]
+   Values:    [  3 ,   4  |   5 ,   8  ]
+                 ^     ^
+                arr[j] arr[j+1]
+   Result:    [  3 ,   4  |   5 ,   8  ]
+
+-----------------------------------------------------------
+End of Pass 3 (i = 1):
+No swaps were made in this pass! Array is fully sorted.
+Final Array: [ 3, 4, 5, 8 ]

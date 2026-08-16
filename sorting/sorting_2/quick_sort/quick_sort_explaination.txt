@@ -1,0 +1,149 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int partition(int arr[], int low, int high) {
+    int pivot = arr[low];
+    int i = low;
+    int j = high;
+
+    while (i < j) {
+        while (i <= high && arr[i] <= pivot) { i++; }
+        while (j >= low && arr[j] > pivot) { j--; }
+        if (i < j) { swap(arr[i], arr[j]); }
+    }
+    swap(arr[low], arr[j]);
+    return j;
+}
+
+void quick_sort(int arr[], int low, int high) {
+    if (low < high) {
+        int partition_indx = partition(arr, low, high);
+        quick_sort(arr, low, partition_indx - 1);
+        quick_sort(arr, partition_indx + 1, high);
+    }
+}
+
+/*
+================================================================================
+                     FULL EXECUTION TRACE (Array Size 6)
+================================================================================
+Initial Call: quick_sort(arr, 0, 5)
+Input Array:  [4, 2, 7, 1, 3, 6]
+Indices:       0  1  2  3  4  5
+
+--------------------------------------------------------------------------------
+STEP 1: FIRST PARTITION -> partition(arr, 0, 5)
+--------------------------------------------------------------------------------
+Array before partition: [4, 2, 7, 1, 3, 6]
+pivot = arr[0] = 4, low = 0, high = 5
+i = 0, j = 5
+
+Loop 1:
+  - i moves right while arr[i] <= 4:
+      i=0: arr[0]=4 (<=4) -> i=1
+      i=1: arr[1]=2 (<=4) -> i=2
+      i=2: arr[2]=7 (>4)  -> i stops at 2
+  - j moves left while arr[j] > 4:
+      j=5: arr[5]=6 (>4)  -> j=4
+      j=4: arr[4]=3 (<=4) -> j stops at 4
+  - i (2) < j (4), so swap(arr[2], arr[4]):
+      Swap arr[2] (7) and arr[4] (3)
+      Array becomes: [4, 2, 3, 1, 7, 6]
+
+Loop 2:
+  - i moves right while arr[i] <= 4:
+      i=2: arr[2]=3 (<=4) -> i=3
+      i=3: arr[3]=1 (<=4) -> i=4
+      i=4: arr[4]=7 (>4)  -> i stops at 4
+  - j moves left while arr[j] > 4:
+      j=4: arr[4]=7 (>4)  -> j=3
+      j=3: arr[3]=1 (<=4) -> j stops at 3
+  - i (4) < j (3) is FALSE. Loop terminates.
+
+Final Swap:
+  - swap(arr[low], arr[j]) -> swap(arr[0], arr[3])
+  - Swap arr[0] (4) and arr[3] (1)
+  - Array becomes: [1, 2, 3, 4, 7, 6]
+  - Returns j = 3 (pivot 4 is now fixed at index 3)
+
+Sub-arrays formed:
+  Left:  [1, 2, 3] (indices 0 to 2)
+  Pivot: [4]       (index 3, fixed)
+  Right: [7, 6]    (indices 4 to 5)
+
+--------------------------------------------------------------------------------
+STEP 2: SORT LEFT SUB-ARRAY -> quick_sort(arr, 0, 2)
+--------------------------------------------------------------------------------
+partition(arr, 0, 2) on [1, 2, 3]
+pivot = arr[0] = 1, low = 0, high = 2
+i = 0, j = 2
+
+Loop 1:
+  - i moves right while arr[i] <= 1:
+      i=0: arr[0]=1 (<=1) -> i=1
+      i=1: arr[1]=2 (>1)  -> i stops at 1
+  - j moves left while arr[j] > 1:
+      j=2: arr[2]=3 (>1)  -> j=1
+      j=1: arr[1]=2 (>1)  -> j=0
+      j=0: arr[0]=1 (<=1) -> j stops at 0
+  - i (1) < j (0) is FALSE. Loop terminates.
+
+Final Swap:
+  - swap(arr[0], arr[0]) -> array remains: [1, 2, 3, 4, 7, 6]
+  - Returns j = 0 (pivot 1 is fixed at index 0)
+
+  Sub-calls from left side:
+    - quick_sort(arr, 0, -1) -> base case (low >= high), returns immediately.
+    - quick_sort(arr, 1, 2)  -> process sub-array [2, 3]
+
+--------------------------------------------------------------------------------
+STEP 3: SUB-ARRAY [2, 3] -> quick_sort(arr, 1, 2)
+--------------------------------------------------------------------------------
+partition(arr, 1, 2) on [2, 3]
+pivot = arr[1] = 2, low = 1, high = 2
+i = 1, j = 2
+
+Loop 1:
+  - i stops at index 2 (arr[2]=3 > 2)
+  - j stops at index 1 (arr[1]=2 <= 2)
+  - i < j is FALSE. Loop terminates.
+
+Final Swap:
+  - swap(arr[1], arr[1]) -> returns j = 1 (pivot 2 is fixed at index 1)
+
+  Sub-calls:
+    - quick_sort(arr, 1, 0) -> base case, returns.
+    - quick_sort(arr, 2, 2) -> base case (low == high), returns.
+
+Left half fully sorted: [1, 2, 3, 4, ...]
+
+--------------------------------------------------------------------------------
+STEP 4: SORT RIGHT SUB-ARRAY -> quick_sort(arr, 4, 5)
+--------------------------------------------------------------------------------
+partition(arr, 4, 5) on [7, 6]
+pivot = arr[4] = 7, low = 4, high = 5
+i = 4, j = 5
+
+Loop 1:
+  - i moves right while arr[i] <= 7:
+      i=4: arr[4]=7 (<=7) -> i=5
+      i=5: arr[5]=6 (<=7) -> i=6 (out of bounds check i <= high stops it at 6)
+  - j moves left while arr[j] > 7:
+      j=5: arr[5]=6 (<=7) -> j stops at 5
+  - i (6) < j (5) is FALSE. Loop terminates.
+
+Final Swap:
+  - swap(arr[low], arr[j]) -> swap(arr[4], arr[5])
+  - Swap arr[4] (7) and arr[5] (6)
+  - Array becomes: [1, 2, 3, 4, 6, 7]
+  - Returns j = 5 (pivot 7 is fixed at index 5)
+
+  Sub-calls:
+    - quick_sort(arr, 4, 4) -> base case, returns.
+    - quick_sort(arr, 6, 5) -> base case, returns.
+
+================================================================================
+FINAL SORTED ARRAY: [1, 2, 3, 4, 6, 7]
+================================================================================
+*/

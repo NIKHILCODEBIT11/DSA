@@ -66,8 +66,8 @@ int main(){
     vector <int> nums={2,3,3,4,7,9};
     node *head=convert_arr_to_ll(nums);
     print(head);
-    node * ans = reverse_ll(head);
+    node* ans = reverse_ll(head);     // I could also write     head = reverse_ll(head)
     print(head);
-    cout<<"The new head is "<<ans->data<<endl;
+    cout<<"The new head is "<<head->data<<endl;      // instead of head->data i can also write ans->data
     return 0;
 }
