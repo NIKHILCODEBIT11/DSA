@@ -27,6 +27,10 @@ void quick_sort(int arr[], int low, int high){
         quick_sort(arr, low, partition_indx-1);
         quick_sort(arr, partition_indx+1, high);
     }
+    // else{   ---------->This is redundant
+    //     return;
+    // }
+    // In C++, when a void function reaches the end of its body without a return statement, it automatically returns to the caller.
 }
 
 int main(){

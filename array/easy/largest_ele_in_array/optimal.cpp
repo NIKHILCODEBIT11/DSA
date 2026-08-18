@@ -22,3 +22,5 @@ int main(){
     cout<<"The largest element is "<<largest(arr1,arr1.size())<<endl;
     return 0;
 }
+
+// Time complexity :- O(N) WHICH IS VERY BETTER THAN O(N*logN)
