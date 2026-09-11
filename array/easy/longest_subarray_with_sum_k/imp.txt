@@ -1,0 +1,2 @@
+agar array mein positive or 0s hain to optimal best hain
+lekin agar negatives bhi hai to better hi run kar sakta hai
