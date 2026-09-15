@@ -3,7 +3,7 @@ using namespace std;
 
 void insertion_sort(int arr[], int n){
     // 3  5   2  7  1  9
-    for(int i = 0; i < n; i++){
+    for(int i = 0; i < n; i++){   // 0 ke jagah 1 se start kar sakte hain
         int j = i;
         while( j>0 && arr[j] < arr[j-1] ){
             swap(arr[j], arr[j-1]);
