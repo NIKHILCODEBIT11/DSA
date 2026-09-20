@@ -1,6 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// kisis bhi step mein confusion ho to do type ke matrix imagine kar 1 * n and n * 1 kyuki m * n wali to hogi hi edge case 1 * n aur n * 1 mein hai
 /*
 ========================================================================================
                           SPIRAL TRAVERSAL (6 x 6 MATRIX)
@@ -358,7 +359,7 @@ vector <int> spiral_traversal_of_matrix(vector <vector<int>> &nums){
         right--;
 
         //RIGHT -> LEFT
-        if(top <= bottom){
+        if(top <= bottom){     // Is case mein 1 * n marix imagine kar aur saath hi n* 1 imagine kar problem dikhegi n * 1 mein, agar maine top <= bottom use kiya but usme bhi left <= right work karegi aur 1 * n mein dono ki logic clear hai
             for(int i = right;i >= left;i--){
                 ans.push_back(nums[bottom][i]);
             }
@@ -366,7 +367,7 @@ vector <int> spiral_traversal_of_matrix(vector <vector<int>> &nums){
         }
 
         // BOTTOM -> TOP
-        if(left <= right){
+        if(left <= right){    // Is case mein 1 * n marix imagine kar aur saath hi n* 1 imagine kar problem dikhegi 1 * n mein, agar maine left <= right use kiya but usme bhi top <= bottom work karegi aur n * 1 mein dono ki logic clear hai  
             for(int i = bottom;i >= top;i--){
                 ans.push_back(nums[i][left]);
             }
