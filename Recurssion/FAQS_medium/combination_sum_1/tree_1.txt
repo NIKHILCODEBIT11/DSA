@@ -1,0 +1,51 @@
+arr = [2, 3]
+target = 5
+
+========================================================================================================================
+                                               F(0, 5, [])
+                                               arr[0] = 2
+========================================================================================================================
+                                     /                                              \
+               [PICK 2] (arr[0] <= 5)                                         [NOT-PICK 2]
+             ds.push(2), target = 5 - 2 = 3                                   ds wahi, target = 5
+                         |                                                               |
+                    F(0, 3, [2])                                                    F(1, 5, [])
+                    arr[0] = 2                                                      arr[1] = 3
+                  /            \                                                  /            \
+        [PICK 2]                  [NOT-PICK 2]                          [PICK 3]                  [NOT-PICK 3]
+  ds.push(2), tgt = 1             ds.pop() -> [2]                 ds.push(3), tgt = 2             ds wahi, tgt = 5
+        |                         target = 3                            |                         target = 5
+   F(0, 1, [2, 2])                      |                          F(1, 2, [3])                         |
+     arr[0] = 2                    F(1, 3, [2])                     arr[1] = 3                     F(2, 5, [])
+    /          \                    arr[1] = 3                     /          \                         |
+  [X]      [NOT-PICK 2]           /            \                 [X]      [NOT-PICK 3]            [BASE CASE]
+ 2<=1    ds.pop() -> [2, 2]   [PICK 3]     [NOT-PICK 3]         3<=2    ds.pop() -> []            index == 2,
+False        tgt = 1          ds.push(3)   ds.pop() -> [2]      False       tgt = 2                 tgt = 5 != 0
+   |             |            tgt = 0          tgt = 3            |             |                       |
+ No        F(1, 1, [2, 2])        |               |               No       F(2, 2, [])              return;
+Call         arr[1] = 3      F(1, 0, [2,3])  F(2, 3, [2])        Call           |
+            /          \          |               |                             |
+          [X]      [NOT-PICK 3]   |          [BASE CASE]                   [BASE CASE]
+         3<=1      ds.pop() ->    |          index == 2,                   index == 2,
+         False       [2, 2]       |          tgt = 3 != 0                  tgt = 2 != 0
+           |         tgt = 1      |               |                             |
+          No             |        |            return;                       return;
+         Call      F(2, 1, [2,2]) |
+                         |        |
+                    [BASE CASE]   |
+                    index == 2,   |
+                    tgt = 1 != 0  |
+                         |        |
+                      return;     |
+                                  |
+                                  v
+                      +------------------------+
+                      |       MATCH 1          |
+                      |  target == 0!          |
+                      |  arr[1] <= 0 (False)   |
+                      |  Not-Pick -> F(2, 0)   |
+                      |  Base case: index == 2 |
+                      |  target == 0           |
+                      |  PUSH TO RESULT:       |
+                      |      [2, 3]            |
+                      +------------------------+
