@@ -22,7 +22,7 @@ int longest_subarray_with_sum_k(vector <int> &nums,int m){
             int sum = 0;
 
             // To find sum :-
-            for(int k = i;k <= j;k++){
+            for(int k = i;k <= j;k++){   // mein subarray from index i to j wale ko consider kar raha aur use hi add kar raha
                 sum += nums[k];
             }
             if(sum == m){
