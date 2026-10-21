@@ -28,6 +28,9 @@ int longest_subarray_with_sum_k(vector <int> &nums,int m){
                 longest = max(longest, j-i+1);
                 // Removed sum = 0 from here see explaination below
             }
+            if (sum > m) {
+                break; // Aage koi bhi element add hoga toh sum sirf badhega hi, m wapas kabhi nahi aayega
+            }
         }
     }
     return longest;
