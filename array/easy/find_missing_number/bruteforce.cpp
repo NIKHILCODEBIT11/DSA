@@ -12,7 +12,7 @@ using namespace std;
 int find_missing_number(vector <int> &nums, int n){
     int n1 = nums.size();
 
-    for(int i = 1; i <= n; i++){
+    for(int i = 1; i <= n; i++){  // ye denote karta hai number not index kyuki total n-1 numbers hain array mein jo ki 1 to n ho sakte hain bas 1 number missing hai
         int flag = 0;
         for(int j = 0; j < n1; j++){
             if(nums[j] == i){
