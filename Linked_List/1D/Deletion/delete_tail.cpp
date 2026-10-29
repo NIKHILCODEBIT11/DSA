@@ -39,17 +39,25 @@ void print(node* head){
 }
 
 node* delete_tail(node* head){
+    // Case 1: Linked list empty hai
+    if(head == nullptr) return nullptr;
 
-    // What if the ll is empty :-
-    if(head == nullptr || head->next == nullptr){
+    // Case 2: Sirf ek hi node hai
+    if(head->next == nullptr){
+        delete head; // Pehle memory free karo
         return nullptr;
     }
+
+    // Case 3: 2 ya 2 se zyada nodes hain
     node* temp = head;
     while(temp->next->next != nullptr){
         temp = temp->next;
     }
-    temp->next = nullptr;
-    delete temp->next;    // Free up the space by deleting tail
+
+    // Sahi order:
+    delete temp->next;    // 1. Pehle aakhri node ko heap se uda do
+    temp->next = nullptr; // 2. Ab link ko tod kar nullptr set karo
+
     return head;
 }
 
