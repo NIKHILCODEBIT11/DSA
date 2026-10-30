@@ -1,8 +1,10 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-// Won't be deleting     "head"         node
-class node{
+// Won't be deleting     "head"         node   yani temp kabhi head nahi hoga, iska temp->back hamesha exist karega
+// to is question mein sirf 2 cases bante hain ya to delete karne wala node "tail" ho ya phir beech mein kahi ho
+
+class node{ 
     public :
     int data;
     node *back;
@@ -36,7 +38,7 @@ void delete_node(node *temp){
     node *prev = temp->back;
     node *front = temp->next;
 
-    if(front == nullptr){
+    if(front == nullptr){     // case 1 :- agar delete karne wala node "tail" ho
         prev->next=nullptr;
         temp->back = nullptr;
         delete temp;
