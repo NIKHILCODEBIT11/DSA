@@ -76,37 +76,45 @@ node *deletetail(node *head){
     return tail;
 }
 
-node *delete_knode(node *head,int k){
-    if(head==NULL){
-        return NULL;
-    }
-    int count=0;
+node* delete_knode(node *head, int k) {
+    if (head == nullptr || k <= 0) return head;
+
     node *knode = head;
-    while(knode!=NULL){
+    int count = 1;
+
+    // k-th node tak traverse karo
+    while (knode != nullptr && count < k) {
+        knode = knode->next;
         count++;
-        if(count==k){
-            break;
-        }
-        knode=knode->next;
     }
 
-    if(knode->back==nullptr && knode->next==nullptr){
-        return NULL;
+    // 0. k list ke size se bada nikla
+    if (knode == nullptr) return head;
+
+    // 1. Single node list
+    if (knode->back == nullptr && knode->next == nullptr) {
+        delete knode;
+        return nullptr;
     }
-    else if(knode->next==nullptr){
-        return deletetail(head);
+    // 2. Head node
+    if (knode->back == nullptr) {
+        node *newHead = head->next;
+        newHead->back = nullptr;
+        delete head;
+        return newHead;
     }
-    else if(knode->back==nullptr){
-        return deletehead(head);
+    // 3. Tail node
+    if (knode->next == nullptr) {
+        knode->back->next = nullptr;
+        delete knode;
+        return head;
     }
+
+    // 4. Middle node
     knode->back->next = knode->next;
     knode->next->back = knode->back;
-
-    knode->next=nullptr;
-    knode->back=nullptr;
-
-    // auto ans = knode->data;           Think what can i do to return deleted node value
     delete knode;
+
     return head;
 }
 
