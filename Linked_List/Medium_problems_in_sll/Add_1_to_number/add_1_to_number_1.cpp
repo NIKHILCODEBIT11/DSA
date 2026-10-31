@@ -58,8 +58,8 @@ node* add_1(node *head){
     node *temp = head;
     while(temp!=nullptr){            //      For condition like      "carry!=0"      it may go to infinite loop as for adding carry to 999, carry will not be 0, unless i manually handle that case
         temp->data+=1;
-        if(temp->data < 10){
-            carry = 0;
+        if(temp->data < 10){    // carry ka value vary karega ya to 0 ya to 1 kyuki mujhe sirf 1 add karne hai to agar ll mein digit 9 bhi ho to add hoke carry 1 hi aa raha
+            carry = 0;      // agar carru = 0 ho gaya to bas ans mil gaya bas ll reverse karo
             break;
         }
         else{
@@ -69,7 +69,7 @@ node* add_1(node *head){
         temp = temp->next;
     }
 
-    if(carry == 1){
+    if(carry == 1){       // agar pure traversal ke baad bhi carry = 1 bach raha hai to us case mein ek naya node banana padega jo ki 1/carry ho jisko ki ll reverse karne ke baad start mein banana hai jo ki new head hoga
         head = reverse(head);
         node *new_head = new node(1);
         new_head->next = head;
