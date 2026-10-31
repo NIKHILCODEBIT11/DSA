@@ -20,8 +20,8 @@ class node{
     // not a full node object. Each node only keeps a pointer (link) to the next node,
     // which avoids infinite size and allows nodes to connect dynamically.
     node(int data, node* next){
-        this->data = data;
-        this->next = next;
+        this->data = data;  // hum yaha this.data = data NAHI LIKH SAKTE
+        this->next = next;  // this ek pointer hota hai: C++ me this keyword current object ka pointer (Node*) hota hai, actual object reference nahi.
     }
 
     node(int data){
@@ -29,16 +29,55 @@ class node{
         this->next=nullptr;
     }
 
+    /*
+    DIFF between "." and "->" :-
+    Jab aap kisi pointer ke zariye member variables ko access karte hain, toh arrow operator (->) use hota hai.
+    Dot operator (.) sirf tab use hota hai jab aapke paas direct object ya reference ho.
+    Agar aapko dot (.) use karna hi hai, toh pehle pointer ko dereference karna padega:
+    (*this).data = data;
+    (*this).next = next;
+
+    ALTERNATIVE :-
+    
+    1. Parameter ka naam alag rakh kar (jo screenshot me tha):
+    Node(int data1, Node* next1) {
+    data = data1;
+    next = next1;
+    }
+
+    2. Member Initializer List use karke (Best C++ Practice):
+    Yaha parameter ka naam same data rakhne ke baad bhi confusion nahi hota aur performance bhi better hoti hai:
+    Node(int data, Node* next) : data(data), next(next) {}
+
+    Node(int data) : data(data), next(nullptr) {}
+
+
+    */
 };
+
+// Sirf ek best practice yaad rakhna: jab kaam poora ho jaye ya program end ho, toh heap memory leak avoid karne ke liye delete y; lagana acchi aadat hoti hai. Baaki aapke notes revision ke liye perfect hain.
 
 int main(){
     vector <int> nums={2,3,6,7,9};
 
+    // 1. Is tarike se node y banta hai STACK mein jo ki jaise hi uska function (yaha main) khatam hoga tab wo khatam ho jayega JIS WAJAH SE HUM JO BHI INSERT DELETE KIYE HONGE US FUNCTION MEIN HONE KE BAAD BAHAR WAPAS USI NORMAL FORM MEIN AA JAYEGA
     // node y = node(nums[0]);             //   y exists only inside main()   and     Destroyed automatically when main() ends
     // cout<<y.data;
 
-    node *y = new node(nums[0]);         //  ➡ new always returns a pointer
+    // 2. YE UPAR WALE TARIKE JAISA HI HAI
+    // node y(nums[0], nullptr);
+
+    // 3. new keyword address return karta hai:
+    // C++ me jab aap new Node(...) likhte hain, toh memory Heap me allocate hoti hai, aur new us allocated node ka memory address (pointer) return karta hai.
+    // Isiliye us address ko catch karne ke liye left side me pointer variable hi chahiye, jo ki Node* y hai.   
+    node *y = new node(nums[0]);         // 'new' ne address diya, 'Node* y' ne use store kiya
     cout<<y->data;
+
+
+    // Agar sirf Node y likhte toh kya hota?
+    // Node y ka matlab hota ek actual object jo Stack memory me banta hai.
+    // Node y = new Node(arr[0], nullptr); // ❌ Error!
+    // Toh compiler error dega kyunki right side se memory address (Node*) mil raha hai, jabki left side me data type simple Node hai. Type mismatch ho jayega.
 
     //   new allocates memory on the heap, constructs the object there, and returns its address.
     return 0;
